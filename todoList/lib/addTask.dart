@@ -12,20 +12,20 @@ class addTask extends StatefulWidget {
 
 class _addTaskState extends State<addTask> {
   Color green = const Color.fromARGB(255, 162, 255, 168);
-  TextEditingController taskControl = new TextEditingController();
+  TextEditingController taskControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: green,
-        padding: EdgeInsets.all(10),
-        constraints: BoxConstraints.expand(),
+        padding: const EdgeInsets.all(10),
+        constraints: const BoxConstraints.expand(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
               controller: taskControl,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 fillColor: Colors.white,
                 filled: true,
                 label: Text("enter task", style: TextStyle(
@@ -34,7 +34,7 @@ class _addTaskState extends State<addTask> {
                 selectionColor: Colors.black,)
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(onPressed: (){
@@ -46,12 +46,12 @@ class _addTaskState extends State<addTask> {
                   });
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("The text Field is empty", style: TextStyle( color: Colors.white, fontSize: 20 ),
+                    const SnackBar(content: Text("The text Field is empty", style: TextStyle( color: Colors.white, fontSize: 20 ),
                     ),
                     backgroundColor: Colors.blue,)
                   );
                 }
-            }, child: Text("Save Task and return", style: TextStyle( 
+            }, child: const Text("Save Task and return", style: TextStyle( 
               color: Colors.grey, fontSize: 20
             ),))
           ],
@@ -62,7 +62,7 @@ class _addTaskState extends State<addTask> {
   }
   BottomAppBar bottombar(){
     return BottomAppBar(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
         child: Container(
           color: Colors.green,
           child: Row(
@@ -71,7 +71,7 @@ class _addTaskState extends State<addTask> {
             children: [
               IconButton(onPressed: (){
                 Navigator.pop(context, widget.taskList);
-              }, icon: Icon(Icons.arrow_back_ios, color: Colors.white,size: 35,)),
+              }, icon: const Icon(Icons.arrow_back_ios, color: Colors.white,size: 35,)),
           ],
         ), 
         )

@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: homepage(),
     );
@@ -37,8 +37,8 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(0, 15, 0, 4),
-        constraints: BoxConstraints.expand(),
+        padding: const EdgeInsets.fromLTRB(0, 15, 0, 4),
+        constraints: const BoxConstraints.expand(),
         decoration: BoxDecoration(
           color: green
         ),
@@ -52,7 +52,7 @@ class _homepageState extends State<homepage> {
   // Bottom App Bar
   BottomAppBar bottombar(){
     return BottomAppBar(
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
         child: Container(
           color: Colors.green,
           child: Row(
@@ -61,7 +61,7 @@ class _homepageState extends State<homepage> {
             children: [
               IconButton(onPressed: (){
                 push();
-              }, icon: Icon(Icons.add_circle_rounded, color: Colors.white,size: 40,)),
+              }, icon: const Icon(Icons.add_circle_rounded, color: Colors.white,size: 40,)),
           ],
         ), 
         )
@@ -71,8 +71,8 @@ class _homepageState extends State<homepage> {
   Container taskBox(String taskName, List<String> taskList, int indexNum){
     indexNum += 1;
     return Container(
-      margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5),
@@ -81,14 +81,14 @@ class _homepageState extends State<homepage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("$indexNum $taskName",style: TextStyle(
+          Text("$indexNum $taskName",style: const TextStyle(
             color: Colors.black, fontSize: 20, 
           ),),
           IconButton(onPressed: (){
             setState(() {
               taskList.remove(taskName);
             });
-          }, icon: Icon(Icons.cancel),color: Colors.black, iconSize: 30,)
+          }, icon: const Icon(Icons.cancel),color: Colors.black, iconSize: 30,)
         ],
       ),
     );
