@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Homepage(),
     );
@@ -133,14 +133,14 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         color: Colors.greenAccent,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
               height: 250,
               width: 450,
               decoration: BoxDecoration(
@@ -152,19 +152,19 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Text(
                     input,
-                    style: TextStyle(fontSize: 32, color: Colors.black54),
+                    style: const TextStyle(fontSize: 32, color: Colors.black54),
                     textAlign: TextAlign.right,
                   ),
                   Text(
                     result,
-                    style: TextStyle(fontSize: 48, color: Colors.black),
+                    style: const TextStyle(fontSize: 48, color: Colors.black),
                     textAlign: TextAlign.right,
                   ),
                 ],
               ),
             ),
             Container(
-              margin: EdgeInsets.all(15),
+              margin: const EdgeInsets.all(15),
               child: Column(
                 children: [
                   Row(
@@ -220,12 +220,12 @@ class _HomepageState extends State<Homepage> {
   ElevatedButton btn(String text) {
     return ElevatedButton(
       onPressed: () => onButtonPressed(text),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+      ),
       child: Text(
         text,
-        style: TextStyle(fontSize: 25),
-      ),
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.fromLTRB(40, 5, 40, 5),
+        style: const TextStyle(fontSize: 25),
       ),
     );
   }
