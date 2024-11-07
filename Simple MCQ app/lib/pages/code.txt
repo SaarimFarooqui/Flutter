@@ -1,0 +1,125 @@
+void main() {
+  runApp(const MyApp());}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();}
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Homepage(), );}}
+
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
+  @override
+  State<Homepage> createState() => _HomepageState();}
+class _HomepageState extends State<Homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text("Multiple Choice Questions", style: TextStyle(
+          color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700),),),
+      body: Container(
+        padding: EdgeInsets.all(10),
+        constraints: BoxConstraints.expand(),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors:[const Color.fromARGB(255, 70, 0, 182), const Color.fromARGB(255, 132, 24, 255)],
+          begin: Alignment.topCenter, end: Alignment.bottomCenter) ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+           question("What is the Capital of France ?","London","Berlin","Paris","Paris"),
+           question("When did World war 2 ended ?","1944","1942","1945","1945")],), ),);}
+
+  Container question(String question, String opt1, String opt2, String opt3, String Correct)
+  {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(5)
+      ),
+      margin: EdgeInsets.all(4),
+      padding: EdgeInsets.all(5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(question, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: Size(120, 20)
+            ),
+            onPressed: ()async{
+            String returnedAnswer;
+            returnedAnswer = await Navigator.push(context, MaterialPageRoute(builder: (context)=>
+            answerPage(question: question, option1: opt1, option2: opt2, option3: opt3, correct: Correct,)));
+            if (returnedAnswer == Correct){
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Its $Correct The answer is correct"))
+              );
+            }else{
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Its not $returnedAnswer The answer is incorrect"))); }
+              }, child: Text("Answer it"))],),); }}
+
+class answerPage extends StatefulWidget {
+    String question;
+    String option1;
+    String option2;
+    String option3;
+    String correct;
+  answerPage({super.key,
+  required this.question,
+  required this.option1,
+  required this.option2,
+  required this.option3,
+  required this.correct});
+
+  @override
+  State<answerPage> createState() => _answerPageState();
+}
+class _answerPageState extends State<answerPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.fromLTRB(7, 200, 7, 200),
+        constraints: BoxConstraints.expand(),
+        color: const Color.fromARGB(255, 0, 41, 61),
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(widget.question, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),),
+              //option 1
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(250, 30)),
+                onPressed: (){
+                  Navigator.pop(context, widget.option1);
+                }, child: Text(widget.option1, style: 
+              TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),)),
+              //option 2
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(250, 30)),
+                onPressed: (){
+                  Navigator.pop(context, widget.option2);
+                }, child: Text(widget.option2, style: 
+              TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),)),
+              //option 3
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(250, 30)),
+                onPressed: (){
+                  Navigator.pop(context, widget.option3);
+                }, child: Text(widget.option3, style: 
+              TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.w800),)),], ),),),);}}
