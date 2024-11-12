@@ -76,8 +76,14 @@ class _homepageState extends State<homepage> {
     );
   }
   Container listbox(String mealName, String mealPrice){
+    String st;
+    if (mealName == ""){
+      st = "No item selected";
+    }else{
+      st = "Meal name: $mealName";
+    }
     return Container(
-      height: 300,
+      height: 70,
       width: 200,
       margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
       padding: EdgeInsets.all(5),
@@ -89,14 +95,18 @@ class _homepageState extends State<homepage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(mealName, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),),
-          Text(mealPrice, style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),)
+          Text(st, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),),
+          Text(mealPrice, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),)
         ],
       ),
     );
   }
   void pushTomealSelector()async{
-     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => mealselect(item: item,)));
+     mealGroup newitem;
+     newitem = await Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => mealselect(item: item,)));
+     setState(() {
+       item = newitem;
+     });
   }
 }
 
