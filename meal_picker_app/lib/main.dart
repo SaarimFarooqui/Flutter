@@ -30,8 +30,7 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
-  late String mealName;
-  late String mealPrice;
+  mealGroup item = mealGroup(mealName: "", mealPrice: "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +53,7 @@ class _homepageState extends State<homepage> {
         ),
         child: ListView(
           children: [
-            listbox("Burger", "Rs 200")
+            listbox(item.mealName, item.mealPrice)
           ]
         ),
       ),
@@ -66,7 +65,9 @@ class _homepageState extends State<homepage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [ElevatedButton(
-              onPressed: (){}, style: ElevatedButton.styleFrom(
+              onPressed: (){
+                pushTomealSelector();
+              }, style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red
               ),child: Text("Select meal", style: TextStyle(color: Colors.white),),)],
           ),
@@ -95,7 +96,7 @@ class _homepageState extends State<homepage> {
     );
   }
   void pushTomealSelector()async{
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => mealselect(mealName: mealName, mealPrice: mealPrice)));
+     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => mealselect(item: item,)));
   }
 }
 
